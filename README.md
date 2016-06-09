@@ -20,6 +20,6 @@
 
 4. jika sudah selesai menambah fitur di source code repository anda sendiri, **_commit_** lalu **_push_** ke repo anda di github (**_git commit, lalu git push origin_**)
 
-5. dari hasil modifikasi di repo github anda, bisa anda lakukan pull request ke repo master *(https://github.com/herisulistiyanto/BelajarAndroid)* melalui situs github.com
+5. dari hasil modifikasi di repo github anda, bisa anda lakukan **_pull request_** ke repo master *(https://github.com/herisulistiyanto/BelajarAndroid)* melalui situs github.com
 
 >Semangat!
