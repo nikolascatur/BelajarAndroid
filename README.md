@@ -22,7 +22,8 @@
 
 5. dari hasil modifikasi di repo github anda, bisa anda lakukan **_pull request_** ke repo master *(https://github.com/herisulistiyanto/BelajarAndroid)* melalui situs github.com
 
-** Format Commit & Push**
+**Format Commit & Push:**
+
 1. Pastikan menggunakan tag pada komentar ex : [Adit] Modified Readme
 
 2. Pastikan fitur sudah jalan di local working copy, baru di push ke origin
