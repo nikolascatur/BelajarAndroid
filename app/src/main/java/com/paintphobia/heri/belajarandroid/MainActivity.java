@@ -1,8 +1,10 @@
 package com.paintphobia.heri.belajarandroid;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.paintphobia.heri.belajarandroid.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     private final int DURATION = 4000;
@@ -22,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
 
                     } finally {
-//                        finish();
-//                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                        //startActivity(intent);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 }
             }
