@@ -1,14 +1,13 @@
 package com.paintphobia.heri.belajarandroid.mainMenu;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import com.paintphobia.heri.belajarandroid.R;
 import com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentAbout;
@@ -18,9 +17,11 @@ import com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentSholat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainMenuActivity extends AppCompatActivity implements FragmentSholat.OnFragmentInteractionListener, FragmentMasjid.OnFragmentInteractionListener, FragmentAbout.OnFragmentInteractionListener {
+public class MainMenuActivity extends AppCompatActivity
+        implements FragmentSholat.OnFragmentInteractionListener,
+        FragmentMasjid.OnFragmentInteractionListener,
+        FragmentAbout.OnFragmentInteractionListener {
 
-    private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -35,9 +36,6 @@ public class MainMenuActivity extends AppCompatActivity implements FragmentShola
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -50,9 +48,9 @@ public class MainMenuActivity extends AppCompatActivity implements FragmentShola
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentSholat(), "Sholat");
-        adapter.addFragment(new FragmentMasjid(), "Masjid");
-        adapter.addFragment(new FragmentAbout(), "About");
+        adapter.addFragment(new FragmentSholat(), this.getResources().getString(R.string.Sholat));
+        adapter.addFragment(new FragmentMasjid(), this.getResources().getString(R.string.Masjid));
+        adapter.addFragment(new FragmentAbout(), this.getResources().getString(R.string.About));
         viewPager.setAdapter(adapter);
     }
 

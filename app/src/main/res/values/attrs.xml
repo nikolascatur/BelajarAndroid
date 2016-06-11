@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomTextFont">
+        <attr name="fontFamily" format="enum">
+            <enum name="bebas" value="1" />
+            <enum name="openSans" value="2" />
+            <enum name="roboto" value="3" />
+        </attr>>
+
+        <attr name="fontStyle" format="enum">
+            <enum name="regular" value="0" />
+            <enum name="light" value="1" />
+            <enum name="bold" value="2" />
+        </attr>>
+    </declare-styleable>
+</resources>
