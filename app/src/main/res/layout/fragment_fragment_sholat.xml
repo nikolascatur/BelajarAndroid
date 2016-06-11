@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentSholat">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/timeNow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:textSize="25sp"
+        android:text="@string/time_now" />
+
+</FrameLayout>
