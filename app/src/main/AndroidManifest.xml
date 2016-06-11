@@ -15,10 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".login.LoginActivity"
+        <activity
+            android:name=".login.LoginActivity"
             android:label="Login"
-            android:theme="@style/AppTheme">
+            android:theme="@style/MyTheme"></activity>
+        <activity
+            android:name=".mainMenu.MainMenuActivity"
+            android:label="Main Menu"
+            android:theme="@style/MyTheme">
         </activity>
     </application>
 

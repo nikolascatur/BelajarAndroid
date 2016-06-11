@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 
 import com.paintphobia.heri.belajarandroid.MainActivity;
 import com.paintphobia.heri.belajarandroid.R;
+import com.paintphobia.heri.belajarandroid.mainMenu.MainMenuActivity;
 
 /**
  * Created by heri on 6/9/2016.
@@ -63,7 +64,7 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
 
     @Override
     public void navigateToMenu() {
-        Intent intentMenu = new Intent(this, MainActivity.class);
+        Intent intentMenu = new Intent(this, MainMenuActivity.class);
         startActivity(intentMenu);
 
         finish();
