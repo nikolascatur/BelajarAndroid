@@ -1,9 +1,9 @@
 package com.paintphobia.heri.belajarandroid.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -14,7 +14,7 @@ import com.paintphobia.heri.belajarandroid.R;
 /**
  * Created by heri on 6/9/2016.
  */
-public class LoginActivity extends Activity implements LoginView, View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener{
 
     private ProgressBar progressBar;
     private EditText input_username;
