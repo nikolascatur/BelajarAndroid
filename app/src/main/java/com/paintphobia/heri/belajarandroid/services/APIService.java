@@ -2,6 +2,8 @@ package com.paintphobia.heri.belajarandroid.services;
 
 import com.paintphobia.heri.belajarandroid.MainActivity;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,9 +23,18 @@ public interface APIService {
                                              @Path("method") String method);
 
     class ServiceFactory {
+
         public APIService createRetrofitService() {
+
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
+                    .setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(interceptor).build();
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(new MainActivity().URL)
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
