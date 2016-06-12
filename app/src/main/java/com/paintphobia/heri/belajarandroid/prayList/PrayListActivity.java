@@ -192,7 +192,7 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
         itemPrayData = new ArrayList<>(Arrays.asList(prayTimesResponse.getPrayTimes()));
         Intent intentSender = new Intent(PrayListActivity.this, MainMenuActivity.class);
         intentSender.putExtra("FETCH_RESULT", itemPrayData);
-        startActivity(intentSender);
+        setResult(Activity.RESULT_OK, intentSender);
 
         finish();
     }

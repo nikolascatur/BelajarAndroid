@@ -115,12 +115,6 @@ public class FragmentSholat extends Fragment {
         myRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         myRecyclerView.setLayoutManager(layoutManager);
-        itemPrayData = (ArrayList<PrayTimes>) getActivity().getIntent().getSerializableExtra("FETCH_RESULT");
-
-        if(itemPrayData != null) {
-            adapter = new PrayTimeAdapter(itemPrayData);
-            myRecyclerView.setAdapter(adapter);
-        }
 
         return view;
     }
@@ -168,7 +162,12 @@ public class FragmentSholat extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1) {
             if(resultCode == Activity.RESULT_OK) {
+                itemPrayData = (ArrayList<PrayTimes>) data.getSerializableExtra("FETCH_RESULT");
 
+                if(itemPrayData != null) {
+                    adapter = new PrayTimeAdapter(itemPrayData);
+                    myRecyclerView.setAdapter(adapter);
+                }
             }
         }
     }
