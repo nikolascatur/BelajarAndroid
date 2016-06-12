@@ -9,8 +9,34 @@
     <string name="Sholat">Sholat</string>
     <string name="Masjid">Masjid</string>
     <string name="About">About</string>
+    <string name="Shubuh">Shubuh : </string>
+    <string name="Dzuhur">Dzuhur : </string>
+    <string name="Ashar">Ashar : </string>
+    <string name="Maghrib">Maghrib : </string>
+    <string name="Isya">Isya : </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="time_now">Now</string>
+
+    <string name="time_prompt">Choose Time Span</string>
+    <string-array name="time_choice">
+        <item>Select Time Span</item>>
+        <item>daily</item>
+        <item>weekly</item>
+        <item>monthly</item>
+        <item>yearly</item>
+    </string-array>>
+
+    <string name="method_prompt">Choose Method Calculation</string>
+    <string-array name="method_choice">
+        <item>Select Method Calculation</item>
+        <item>Egyptian General Authority of Survey</item>>
+        <item>University Of Islamic Sciences, Karachi (Shafi)</item>>
+        <item>University Of Islamic Sciences, Karachi (Hanafi)</item>>
+        <item>Islamic Circle of North America</item>>
+        <item>Muslim World League</item>>
+        <item>Umm Al-Qura</item>>
+        <item>Fixed Isha</item>>
+    </string-array>>
 </resources>

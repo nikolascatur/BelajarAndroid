@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
+    android:backgroundTint="@color/cardview_dark_background"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <ImageView android:id="@+id/ic_sholat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tab_sholat"
+            android:layout_marginLeft="10dp"/>
+
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_item_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fontFamily="OpenSans"
+            app:fontStyle="bold"
+            android:textColor="#ffffff"
+            android:text="date"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_toRightOf="@+id/ic_sholat"
+            android:layout_toEndOf="@+id/ic_sholat"
+            android:gravity="right|center_vertical"
+            android:layout_alignBottom="@+id/ic_sholat"/>
+
+            <!--Block Fajr-->
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_label_fajr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_item_date"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/ic_sholat"
+            app:fontFamily="roboto"
+            app:fontStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="fajr"/>
+
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_fajr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_label_fajr"
+            android:layout_toEndOf="@+id/text_label_fajr"
+            android:layout_alignBottom="@+id/text_label_fajr"
+            android:gravity="right|center_vertical"
+            app:fontFamily="roboto"
+            app:fontStyle="regular"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="fajr"/>
+
+        <!--Block shurooq-->
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_label_shurooq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_label_fajr"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/ic_sholat"
+            app:fontFamily="roboto"
+            app:fontStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="shurooq"/>
+
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_shurooq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_label_shurooq"
+            android:layout_toEndOf="@+id/text_label_shurooq"
+            android:layout_alignBottom="@+id/text_label_shurooq"
+            android:gravity="right|center_vertical"
+            app:fontFamily="roboto"
+            app:fontStyle="regular"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="shurooq"/>
+
+        <!--Block dhuhr-->
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_label_dhuhr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_label_shurooq"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/ic_sholat"
+            app:fontFamily="roboto"
+            app:fontStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="dhuhr"/>
+
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_dhuhr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_label_dhuhr"
+            android:layout_toEndOf="@+id/text_label_dhuhr"
+            android:layout_alignBottom="@+id/text_label_dhuhr"
+            android:gravity="right|center_vertical"
+            app:fontFamily="roboto"
+            app:fontStyle="regular"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="dhuhr"/>
+
+        <!--Block asr-->
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_label_asr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_label_dhuhr"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/ic_sholat"
+            app:fontFamily="roboto"
+            app:fontStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="asr"/>
+
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_asr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_label_asr"
+            android:layout_toEndOf="@+id/text_label_asr"
+            android:layout_alignBottom="@+id/text_label_asr"
+            android:gravity="right|center_vertical"
+            app:fontFamily="roboto"
+            app:fontStyle="regular"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="asr"/>
+
+        <!--Block maghrib-->
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_label_maghrib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_label_asr"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/ic_sholat"
+            app:fontFamily="roboto"
+            app:fontStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="maghrib"/>
+
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_maghrib"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_label_maghrib"
+            android:layout_toEndOf="@+id/text_label_maghrib"
+            android:layout_alignBottom="@+id/text_label_maghrib"
+            android:gravity="right|center_vertical"
+            app:fontFamily="roboto"
+            app:fontStyle="regular"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="maghrib"/>
+
+        <!--Block isha-->
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_label_isha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_label_maghrib"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/ic_sholat"
+            app:fontFamily="roboto"
+            app:fontStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="isha"/>
+
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/text_isha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_label_isha"
+            android:layout_toEndOf="@+id/text_label_isha"
+            android:layout_alignBottom="@+id/text_label_isha"
+            android:gravity="right|center_vertical"
+            app:fontFamily="roboto"
+            app:fontStyle="regular"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="isha"/>
+
+    </RelativeLayout>>
+
+</android.support.v7.widget.CardView>

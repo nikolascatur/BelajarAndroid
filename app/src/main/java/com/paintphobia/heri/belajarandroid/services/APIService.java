@@ -13,12 +13,12 @@ import retrofit2.http.Path;
  */
 public interface APIService {
 
-    @GET("/{location}/{times}/{date}/{daylight}/{method}.json")
-    Call<PrayTimesList> requestPrayTimes(@Path("location") String location,
-                                         @Path("times") String times,
-                                         @Path("date") String date,
-                                         @Path("daylight") boolean daylight,
-                                         @Path("method") String method);
+    @GET("/{location}/{times}/{date}/{daylight}/{method}.json?key=e39771078e19b5b45c131e34bd367a2d")
+    Call<PrayTimesResponse> requestPrayTimes(@Path("location") String location,
+                                             @Path("times") String times,
+                                             @Path("date") String date,
+                                             @Path("daylight") boolean daylight,
+                                             @Path("method") String method);
 
     class ServiceFactory {
         public APIService createRetrofitService() {

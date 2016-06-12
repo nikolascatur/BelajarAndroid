@@ -1,9 +1,14 @@
 package com.paintphobia.heri.belajarandroid.mainMenu.fragments;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.view.LayoutInflater;
@@ -12,8 +17,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.paintphobia.heri.belajarandroid.R;
+import com.paintphobia.heri.belajarandroid.prayList.PrayListActivity;
+import com.paintphobia.heri.belajarandroid.prayList.PrayTimeAdapter;
+import com.paintphobia.heri.belajarandroid.services.PrayTimes;
 import com.paintphobia.heri.belajarandroid.utils.Clock;
 import com.paintphobia.heri.belajarandroid.utils.OnClockTickListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +45,12 @@ public class FragmentSholat extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private ArrayList<PrayTimes> itemPrayData;
+    private RecyclerView myRecyclerView;
+    private PrayTimeAdapter adapter;
+
     private TextView txtTimeNow;
+    private FloatingActionButton fab;
 
     public FragmentSholat() {
         // Required empty public constructor
@@ -66,6 +81,7 @@ public class FragmentSholat extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -86,6 +102,26 @@ public class FragmentSholat extends Fragment {
 
             }
         });
+
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PrayListActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+        myRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        myRecyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        myRecyclerView.setLayoutManager(layoutManager);
+        itemPrayData = (ArrayList<PrayTimes>) getActivity().getIntent().getSerializableExtra("FETCH_RESULT");
+
+        if(itemPrayData != null) {
+            adapter = new PrayTimeAdapter(itemPrayData);
+            myRecyclerView.setAdapter(adapter);
+        }
+
         return view;
     }
 
@@ -126,5 +162,14 @@ public class FragmentSholat extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK) {
+
+            }
+        }
     }
 }

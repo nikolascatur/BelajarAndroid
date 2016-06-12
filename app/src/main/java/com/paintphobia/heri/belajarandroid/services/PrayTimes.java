@@ -1,52 +1,41 @@
 package com.paintphobia.heri.belajarandroid.services;
 
+import java.io.Serializable;
+
 /**
  * Created by heri on 6/10/2016.
  */
-public class PrayTimes {
-    String date;
-    boolean daylight;
-    String location;
-    String method;
-    String times;
+public class PrayTimes implements Serializable{
+    String date_for;
+    String fajr;
+    String shurooq;
+    String dhuhr;
+    String asr;
+    String maghrib;
+    String isha;
 
-    public void setDate(String pDate) {
-        this.date = pDate;
-    }
-
-    public void setDaylight(boolean pDaylight) {
-        this.daylight = pDaylight;
-    }
-
-    public void setLocation(String pLocation) {
-        this.location = pLocation;
-    }
-
-    public void setMethod(String pMethod) {
-        this.method = pMethod;
-    }
-
-    public void setTimes(String pTimes) {
-        this.times = pTimes;
-    }
 
     public String getDate() {
-        return this.date;
+        return this.date_for;
+    }
+    public String getFajr() {
+        return this.fajr;
+    }
+    public String getShurooq() {
+        return this.shurooq;
     }
 
-    public boolean getDaylight() {
-        return this.daylight;
+    public String getDhuhr() {
+        return this.dhuhr;
+    }
+    public String getAsr() {
+        return this.asr;
+    }
+    public String getMaghrib() {
+        return this.maghrib;
+    }
+    public String getIsha() {
+        return this.isha;
     }
 
-    public String getLocation() {
-        return this.location;
-    }
-
-    public String getMethod() {
-        return this.method;
-    }
-
-    public String getTimes() {
-        return this.times;
-    }
 }

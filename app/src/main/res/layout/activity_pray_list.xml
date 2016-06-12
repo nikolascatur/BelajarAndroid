@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--block date-->
+    <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="24dp"
+        android:text="Date"
+        app:fontFamily="roboto"
+        app:fontStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <ImageView android:id="@+id/ic_date"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_date"
+        android:layout_below="@+id/text_date"
+        android:layout_alignLeft="@+id/text_date"/>
+
+    <EditText android:id="@+id/input_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:layout_toRightOf="@+id/ic_date"
+        android:layout_toEndOf="@+id/ic_date"
+        android:layout_alignBottom="@+id/ic_date"
+        android:gravity="right|center_vertical"
+        android:clickable="true"/>
+
+        <!--block location-->
+    <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+        android:id="@+id/text_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Location"
+        app:fontFamily="roboto"
+        app:fontStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/ic_date"
+        android:layout_alignLeft="@+id/ic_date"/>
+
+    <ImageView android:id="@+id/ic_location"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_location"
+        android:layout_below="@+id/text_location"
+        android:layout_alignLeft="@+id/text_location"/>
+
+    <EditText android:id="@+id/input_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:layout_toRightOf="@+id/ic_location"
+        android:layout_toEndOf="@+id/ic_location"
+        android:layout_alignBottom="@+id/ic_location"
+        android:gravity="right|center_vertical"
+        android:clickable="true"/>
+
+    <!--block Method-->
+    <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+        android:id="@+id/text_method"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Method"
+        app:fontFamily="roboto"
+        app:fontStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/ic_location"
+        android:layout_alignLeft="@+id/ic_location"/>
+
+    <ImageView android:id="@+id/ic_method"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_method"
+        android:layout_below="@+id/text_method"
+        android:layout_alignLeft="@+id/text_method"/>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ic_method"
+        android:layout_toEndOf="@+id/ic_method"
+        android:layout_alignBottom="@+id/ic_method">
+        <Spinner android:id="@+id/spinner_method"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/method_choice"
+            android:prompt="@string/method_prompt"
+            android:layout_toRightOf="@+id/ic_method"
+            android:layout_toEndOf="@+id/ic_method"
+            android:layout_alignBottom="@+id/ic_method"/>
+    </LinearLayout>>
+
+        <!--block Times-->
+    <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Time Span"
+        app:fontFamily="roboto"
+        app:fontStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/ic_method"
+        android:layout_alignLeft="@+id/ic_method"/>
+
+    <ImageView android:id="@+id/ic_time"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_times"
+        android:layout_below="@+id/text_time"
+        android:layout_alignLeft="@+id/text_time"/>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ic_time"
+        android:layout_toEndOf="@+id/ic_time"
+        android:layout_alignBottom="@+id/ic_time">
+        <Spinner android:id="@+id/spinner_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/time_choice"
+            android:prompt="@string/time_prompt"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_toRightOf="@+id/ic_time"
+            android:layout_toEndOf="@+id/ic_time"
+            android:layout_alignBottom="@+id/ic_time"/>
+    </LinearLayout>>
+
+    <!--block Daylight-->
+    <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+        android:id="@+id/text_daylight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Daylight"
+        app:fontFamily="roboto"
+        app:fontStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/ic_time"
+        android:layout_alignLeft="@+id/ic_time"/>
+
+    <ImageView android:id="@+id/ic_daylight"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_daylight"
+        android:layout_below="@+id/text_daylight"
+        android:layout_alignLeft="@+id/text_daylight"/>
+
+    <android.support.v7.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:checked="false"
+        android:text=""
+        android:textOn="On"
+        android:textOff="Off"
+        app:showText="true"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBottom="@+id/ic_daylight"
+        android:layout_toRightOf="@+id/ic_daylight"
+        android:layout_toEndOf="@+id/ic_daylight"
+        android:layout_marginBottom="10dp" />
+
+        <!--block button-->
+    <Button android:id="@+id/button_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="SUBMIT"/>
+
+</RelativeLayout>

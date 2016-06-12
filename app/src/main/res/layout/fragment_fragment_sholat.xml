@@ -2,22 +2,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:belajarandroid="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentSholat">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout android:layout_width="match_parent"
+    <LinearLayout android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
-        android:id="@+id/timeNow"
+        <com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView
+            android:id="@+id/timeNow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textSize="25sp"
+            app:fontFamily="roboto"
+            app:fontStyle="bold"
+            android:text="@string/time_now" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:padding="10dp"
-        android:textSize="25sp"
-        belajarandroid:fontFamily="roboto"
-        belajarandroid:fontStyle="bold"
-        android:text="@string/time_now" />
-    </LinearLayout>
+        android:layout_below="@+id/linearLayout"
+        android:scrollbars="vertical"/>
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:backgroundTint="@color/colorAccent"
+            android:src="@drawable/ic_add"
+            android:layout_marginBottom="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>>
 
 </RelativeLayout>
