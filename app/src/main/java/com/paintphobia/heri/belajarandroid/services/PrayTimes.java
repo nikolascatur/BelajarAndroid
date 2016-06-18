@@ -14,28 +14,59 @@ public class PrayTimes implements Serializable{
     String maghrib;
     String isha;
 
-
-    public String getDate() {
+    public String getDate_for() {
         return this.date_for;
     }
-    public String getFajr() {
-        return this.fajr;
+
+    public void setDate_for(String date_for) {
+        this.date_for = date_for;
     }
+
+    public void setFajr(String fajr) {
+        this.fajr = fajr;
+    }
+
+    public void setShurooq(String shurooq) {
+        this.shurooq = shurooq;
+    }
+
+    public void setDhuhr(String dhuhr) {
+        this.dhuhr = dhuhr;
+    }
+
+    public void setAsr(String asr) {
+        this.asr = asr;
+    }
+
+    public void setMaghrib(String maghrib) {
+        this.maghrib = maghrib;
+    }
+
+    public void setIsha(String isha) {
+        this.isha = isha;
+    }
+
+    public String getFajr() {
+        return fajr;
+    }
+
     public String getShurooq() {
-        return this.shurooq;
+        return shurooq;
     }
 
     public String getDhuhr() {
-        return this.dhuhr;
-    }
-    public String getAsr() {
-        return this.asr;
-    }
-    public String getMaghrib() {
-        return this.maghrib;
-    }
-    public String getIsha() {
-        return this.isha;
+        return dhuhr;
     }
 
+    public String getAsr() {
+        return asr;
+    }
+
+    public String getMaghrib() {
+        return maghrib;
+    }
+
+    public String getIsha() {
+        return isha;
+    }
 }

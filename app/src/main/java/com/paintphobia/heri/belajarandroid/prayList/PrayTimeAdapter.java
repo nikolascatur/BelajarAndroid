@@ -30,7 +30,7 @@ public class PrayTimeAdapter extends RecyclerView.Adapter<PrayTimeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textPrayDate.setText(item.get(position).getDate());
+        holder.textPrayDate.setText(item.get(position).getDate_for());
         holder.textFajr.setText(item.get(position).getFajr());
         holder.textShurooq.setText(item.get(position).getShurooq());
         holder.textDhuhr.setText(item.get(position).getDhuhr());

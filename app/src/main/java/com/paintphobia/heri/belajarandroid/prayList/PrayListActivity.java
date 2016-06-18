@@ -26,7 +26,6 @@ import com.paintphobia.heri.belajarandroid.services.PrayTimesResponse;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 /**
@@ -189,7 +188,7 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
     public void onSuccess(PrayTimesResponse prayTimesResponse) {
 
         Toast.makeText(PrayListActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
-        itemPrayData = new ArrayList<>(Arrays.asList(prayTimesResponse.getPrayTimes()));
+        itemPrayData = new ArrayList<>(prayTimesResponse.getItems());
         Intent intentSender = new Intent(PrayListActivity.this, MainMenuActivity.class);
         intentSender.putExtra("FETCH_RESULT", itemPrayData);
         setResult(Activity.RESULT_OK, intentSender);
