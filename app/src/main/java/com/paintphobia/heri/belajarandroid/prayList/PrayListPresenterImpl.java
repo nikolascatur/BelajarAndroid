@@ -2,6 +2,7 @@ package com.paintphobia.heri.belajarandroid.prayList;
 
 import com.paintphobia.heri.belajarandroid.services.APIService;
 import com.paintphobia.heri.belajarandroid.services.PrayTimesResponse;
+import com.paintphobia.heri.belajarandroid.utils.NetworkError;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,28 +44,28 @@ public class PrayListPresenterImpl implements PrayListPresenter, PrayListInterac
     @Override
     public void onDateError() {
         if(prayListView != null) {
-            prayListView.onFailure("Set The Date First");
+            prayListView.showToast("Set The Date First");
         }
     }
 
     @Override
     public void onLocationError() {
         if(prayListView != null) {
-            prayListView.onFailure("Set The Location First");
+            prayListView.showToast("Set The Location First");
         }
     }
 
     @Override
     public void onMethodError() {
         if(prayListView != null) {
-            prayListView.onFailure("Choose The Method First");
+            prayListView.showToast("Choose The Method First");
         }
     }
 
     @Override
     public void onTimeError() {
         if(prayListView != null) {
-            prayListView.onFailure("Set The Time Span First");
+            prayListView.showToast("Set The Time Span First");
         }
     }
 
@@ -82,15 +83,13 @@ public class PrayListPresenterImpl implements PrayListPresenter, PrayListInterac
                     if(response.isSuccessful()) {
                         PrayTimesResponse prayTimesResponse = response.body();
                         prayListView.onSuccess(prayTimesResponse);
-                    } else {
-                        prayListView.onFailure("Response FAIL");
                     }
                     prayListView.hideProgress();
                 }
 
                 @Override
                 public void onFailure(Call<PrayTimesResponse> call, Throwable t) {
-                    prayListView.onFailure("FAIL CALL : "+t.getMessage());
+                    prayListView.onFailure(new NetworkError(t));
                     prayListView.hideProgress();
                 }
             });

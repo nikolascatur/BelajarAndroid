@@ -23,6 +23,7 @@ import com.paintphobia.heri.belajarandroid.R;
 import com.paintphobia.heri.belajarandroid.mainMenu.MainMenuActivity;
 import com.paintphobia.heri.belajarandroid.services.PrayTimes;
 import com.paintphobia.heri.belajarandroid.services.PrayTimesResponse;
+import com.paintphobia.heri.belajarandroid.utils.NetworkError;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
@@ -127,9 +128,9 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
                             );
                 } else {
                     if(spinnerMethodPos <= 0) {
-                        onFailure("Choose The Method First");
+                        showToast("Choose The Method First");
                     } else if (spinnerTimePos <= 0) {
-                        onFailure("Set The Date First");
+                        showToast("Set The Date First");
                     }
                 }
             }
@@ -197,7 +198,12 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
     }
 
     @Override
-    public void onFailure(String msg) {
+    public void onFailure(NetworkError networkError) {
+        Toast.makeText(PrayListActivity.this, networkError.getAppErrorMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showToast(String msg) {
         Toast.makeText(PrayListActivity.this, msg, Toast.LENGTH_LONG).show();
     }
 
