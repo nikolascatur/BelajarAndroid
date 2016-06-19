@@ -19,7 +19,10 @@ public class PrayListPresenterImpl implements PrayListPresenter, PrayListInterac
     private String strLocation, strTime, strDate, strMethod;
     private boolean bDaylight;
 
-    public PrayListPresenterImpl(PrayListView view) {
+    private APIService service;
+
+    public PrayListPresenterImpl(APIService service, PrayListView view) {
+        this.service = service;
         this.prayListView = view;
         this.prayListInteractor = new PrayListInteractorImpl();
     }
@@ -75,7 +78,6 @@ public class PrayListPresenterImpl implements PrayListPresenter, PrayListInterac
 
             prayListView.showProgress();
 
-            APIService service = new APIService.ServiceFactory().createRetrofitService();
             Call<PrayTimesResponse> call = service.requestPrayTimes(strLocation, strTime, strDate, bDaylight, strMethod);
             call.enqueue(new Callback<PrayTimesResponse>() {
                 @Override

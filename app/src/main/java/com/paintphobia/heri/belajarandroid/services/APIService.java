@@ -1,12 +1,6 @@
 package com.paintphobia.heri.belajarandroid.services;
 
-import com.paintphobia.heri.belajarandroid.MainActivity;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -22,6 +16,8 @@ public interface APIService {
                                              @Path("daylight") boolean daylight,
                                              @Path("method") String method);
 
+    /*
+    // Disable block code, already injected using dagger
     class ServiceFactory {
 
         public APIService createRetrofitService() {
@@ -41,4 +37,5 @@ public interface APIService {
             return retrofit.create(APIService.class);
         }
     }
+    */
 }

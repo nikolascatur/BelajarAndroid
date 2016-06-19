@@ -19,8 +19,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.paintphobia.heri.belajarandroid.MyApp;
 import com.paintphobia.heri.belajarandroid.R;
 import com.paintphobia.heri.belajarandroid.mainMenu.MainMenuActivity;
+import com.paintphobia.heri.belajarandroid.services.APIService;
 import com.paintphobia.heri.belajarandroid.services.PrayTimes;
 import com.paintphobia.heri.belajarandroid.services.PrayTimesResponse;
 import com.paintphobia.heri.belajarandroid.utils.NetworkError;
@@ -29,12 +31,22 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.inject.Inject;
+
+import retrofit2.Retrofit;
+
 /**
  * Created by heri on 6/11/2016.
  */
 public class PrayListActivity extends android.support.v7.app.AppCompatActivity
         implements PrayListView,
         DatePickerDialog.OnDateSetListener{
+
+    @Inject
+    Retrofit retrofit;
+
+    @Inject
+    APIService service;
 
     private final String TAG = PrayListActivity.class.getSimpleName();
 
@@ -136,14 +148,16 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
             }
         });
 
-        prayListPresenter = new PrayListPresenterImpl(this);
-
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setDefaultDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
         }
+
+        ((MyApp) getApplication()).getBackEndComponent().inject(this);
+
+        prayListPresenter = new PrayListPresenterImpl(service, this);
     }
 
 
