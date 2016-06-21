@@ -17,13 +17,19 @@ import com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentSholat;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainMenuActivity extends AppCompatActivity
         implements FragmentSholat.OnFragmentInteractionListener,
         FragmentMasjid.OnFragmentInteractionListener,
         FragmentAbout.OnFragmentInteractionListener {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    @BindView(R.id.tabs)
+    TabLayout tabLayout;
+
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
 
     private int[] tabIcons = {
             R.drawable.ic_tab_sholat,
@@ -36,12 +42,11 @@ public class MainMenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        ButterKnife.bind(this);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
     }

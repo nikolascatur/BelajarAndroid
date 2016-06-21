@@ -11,6 +11,9 @@ import com.paintphobia.heri.belajarandroid.ui.custom.CustomTextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by heri on 6/12/2016.
  */
@@ -45,17 +48,32 @@ public class PrayTimeAdapter extends RecyclerView.Adapter<PrayTimeAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private CustomTextView textPrayDate,textFajr, textShurooq, textDhuhr, textAsr, textMaghrib, textIsha;
+
+        @BindView(R.id.text_item_date)
+        CustomTextView textPrayDate;
+
+        @BindView(R.id.text_fajr)
+        CustomTextView textFajr;
+
+        @BindView(R.id.text_shurooq)
+        CustomTextView textShurooq;
+
+        @BindView(R.id.text_dhuhr)
+        CustomTextView textDhuhr;
+
+        @BindView(R.id.text_asr)
+        CustomTextView textAsr;
+
+        @BindView(R.id.text_maghrib)
+        CustomTextView textMaghrib;
+
+        @BindView(R.id.text_isha)
+        CustomTextView textIsha;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textPrayDate = (CustomTextView) itemView.findViewById(R.id.text_item_date);
-            textFajr = (CustomTextView) itemView.findViewById(R.id.text_fajr);
-            textShurooq = (CustomTextView) itemView.findViewById(R.id.text_shurooq);
-            textDhuhr = (CustomTextView) itemView.findViewById(R.id.text_dhuhr);
-            textAsr = (CustomTextView) itemView.findViewById(R.id.text_asr);
-            textMaghrib = (CustomTextView) itemView.findViewById(R.id.text_maghrib);
-            textIsha = (CustomTextView) itemView.findViewById(R.id.text_isha);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

@@ -5,33 +5,44 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.paintphobia.heri.belajarandroid.MainActivity;
 import com.paintphobia.heri.belajarandroid.R;
 import com.paintphobia.heri.belajarandroid.mainMenu.MainMenuActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by heri on 6/9/2016.
  */
-public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements LoginView{
 
-    private ProgressBar progressBar;
-    private EditText input_username;
-    private EditText input_password;
+    private final String TAG = LoginActivity.class.getSimpleName();
+
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
+
+    @BindView(R.id.username)
+    EditText input_username;
+
+    @BindView(R.id.password)
+    EditText input_password;
+
     private LoginPresenter presenter;
+
+    @BindView(R.id.button_login)
+    Button btnLogin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress);
-        input_username = (EditText) findViewById(R.id.username);
-        input_password = (EditText) findViewById(R.id.password);
-
-        findViewById(R.id.button_login).setOnClickListener(this);
+        ButterKnife.bind(this);
 
         presenter = new LoginPresenterImpl(this);
     }
@@ -70,8 +81,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
         finish();
     }
 
-    @Override
-    public void onClick(View v) {
+    @OnClick(R.id.button_login)
+    public void submitLogin() {
         presenter.validateCredentials(input_username.getText().toString(), input_password.getText().toString());
     }
 }

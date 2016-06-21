@@ -25,6 +25,9 @@ import com.paintphobia.heri.belajarandroid.utils.OnClockTickListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -46,11 +49,16 @@ public class FragmentSholat extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private ArrayList<PrayTimes> itemPrayData;
-    private RecyclerView myRecyclerView;
     private PrayTimeAdapter adapter;
 
-    private TextView txtTimeNow;
-    private FloatingActionButton fab;
+    @BindView(R.id.my_recycler_view)
+    RecyclerView myRecyclerView;
+
+    @BindView(R.id.timeNow)
+    TextView txtTimeNow;
+
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     public FragmentSholat() {
         // Required empty public constructor
@@ -89,7 +97,9 @@ public class FragmentSholat extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_sholat, container, false);
-        txtTimeNow = (TextView)view.findViewById(R.id.timeNow);
+
+        ButterKnife.bind(this, view);
+
         Clock c = new Clock(this.getActivity(), Clock.TICKPERSECOND);
         c.AddClockTickListner(new OnClockTickListener() {
             @Override
@@ -103,7 +113,6 @@ public class FragmentSholat extends Fragment {
             }
         });
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +120,7 @@ public class FragmentSholat extends Fragment {
                 startActivityForResult(intent, 1);
             }
         });
-        myRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+
         myRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         myRecyclerView.setLayoutManager(layoutManager);

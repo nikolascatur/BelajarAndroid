@@ -33,6 +33,8 @@ import java.util.Calendar;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Retrofit;
 
 /**
@@ -52,12 +54,23 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
 
     private PrayListPresenter prayListPresenter;
     private ProgressDialog progressDialog;
-    private Spinner spinnerTime, spinnerMethod;
+
+    @BindView(R.id.spinner_time)
+    Spinner spinnerTime;
+
+    @BindView(R.id.spinner_method)
+    Spinner spinnerMethod;
+
+    @BindView(R.id.input_date)
+    EditText inputDate;
+
+    @BindView(R.id.input_location)
+    EditText inputLocation;
+
+    @BindView(R.id.button_submit)
+    Button buttonSubmit;
 
     private String strTimeSpan, strMethod;
-    private EditText inputDate, inputLocation;
-    private Button buttonSubmit;
-
     private int spinnerTimePos;
     private int spinnerMethodPos;
     private boolean isUseDaylight = false;
@@ -69,12 +82,10 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pray_list);
 
+        ButterKnife.bind(this);
+
         progressDialog = new ProgressDialog(PrayListActivity.this);
         progressDialog.setMessage("Fetch Data");
-        spinnerTime = (Spinner) findViewById(R.id.spinner_time);
-        spinnerMethod = (Spinner) findViewById(R.id.spinner_method);
-        inputDate = (EditText) findViewById(R.id.input_date);
-        inputLocation = (EditText) findViewById(R.id.input_location);
 
         spinnerTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -127,7 +138,6 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
             }
         });
 
-        buttonSubmit = (Button) findViewById(R.id.button_submit);
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
