@@ -10,8 +10,6 @@ public class MainActivity extends AppCompatActivity {
     private final int DURATION = 4000;
     private Thread mSplashThread;
 
-    public final String URL = "http://muslimsalat.com/";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
