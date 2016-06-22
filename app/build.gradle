@@ -64,7 +64,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
 //    Play Service Support
-    compile 'com.google.android.gms:play-services:9.0.1'
+    compile 'com.google.android.gms:play-services-maps:9.0.2'
+    compile 'com.google.android.gms:play-services-location:9.0.2'
 
 //    MultiDex Support
     compile 'com.android.support:multidex:1.0.0'

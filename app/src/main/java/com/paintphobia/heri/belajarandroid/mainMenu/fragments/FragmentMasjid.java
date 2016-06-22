@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.paintphobia.heri.belajarandroid.R;
 
 /**
@@ -105,8 +108,6 @@ public class FragmentMasjid extends Fragment
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
             progressDialog = new ProgressDialog(context);
-            progressDialog.setMessage("FETCH MAP DATA");
-            progressDialog.show();
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -130,7 +131,7 @@ public class FragmentMasjid extends Fragment
                 .zoom(16f)
                 .build();
 
-        this.googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
     @Override
@@ -138,15 +139,20 @@ public class FragmentMasjid extends Fragment
         loadMap(googleMap);
     }
 
-    private void loadMap(GoogleMap googleMap) {
-        this.googleMap = googleMap;
-        this.googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-        this.googleMap.getUiSettings().setAllGesturesEnabled(true);
+    private void loadMap(GoogleMap map) {
+        progressDialog.setMessage("FETCH MAP DATA");
+        progressDialog.show();
+        googleMap = map;
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        googleMap.getUiSettings().setAllGesturesEnabled(true);
+        googleMap.getUiSettings().setCompassEnabled(true);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
 
         enableMyLocation();
 
         if(supportMapFragment != null) {
             supportMapFragment.getMapAsync(FragmentMasjid.this);
+
             progressDialog.dismiss();
         }
     }
@@ -155,6 +161,28 @@ public class FragmentMasjid extends Fragment
         if(ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             this.googleMap.setMyLocationEnabled(true);
+
+            LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, true);
+            Location location = locationManager.getLastKnownLocation(provider);
+
+            if(location != null) {
+                LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
+                CameraPosition position = this.googleMap.getCameraPosition();
+
+                CameraPosition.Builder builder = new CameraPosition.Builder();
+                builder.zoom(16f).target(target);
+
+                this.googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(builder.build()));
+                this.googleMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude()))
+                        .title("You are here!")
+                        .snippet("Consider yourself located"));
+
+
+
+            }
+
         } else {
             ActivityCompat.requestPermissions(this.getActivity(),
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);

@@ -14,9 +14,6 @@ import com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentAbout;
 import com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentMasjid;
 import com.paintphobia.heri.belajarandroid.mainMenu.fragments.FragmentSholat;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -46,23 +43,47 @@ public class MainMenuActivity extends AppCompatActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.Sholat)));
+        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.Masjid)));
+        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.About)));
+
+        final ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+//
+//        setupViewPager(viewPager);
+//        tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentSholat(), this.getResources().getString(R.string.Sholat));
-        adapter.addFragment(new FragmentMasjid(), this.getResources().getString(R.string.Masjid));
-        adapter.addFragment(new FragmentAbout(), this.getResources().getString(R.string.About));
-        viewPager.setAdapter(adapter);
-    }
+//    private void setupViewPager(ViewPager viewPager) {
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+//        adapter.addFragment(new FragmentSholat(), this.getResources().getString(R.string.Sholat));
+//        adapter.addFragment(new FragmentMasjid(), this.getResources().getString(R.string.Masjid));
+//        adapter.addFragment(new FragmentAbout(), this.getResources().getString(R.string.About));
+//        viewPager.setAdapter(adapter);
+//    }
 
     private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        for(int i = 0; i< tabLayout.getTabCount(); i++) {
+            tabLayout.getTabAt(i).setIcon(tabIcons[i]);
+        }
     }
 
     @Override
@@ -71,31 +92,39 @@ public class MainMenuActivity extends AppCompatActivity
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+        private int numTab;
 
-        public ViewPagerAdapter(FragmentManager manager) {
+        public ViewPagerAdapter(FragmentManager manager, int numTab) {
             super(manager);
+            this.numTab = numTab;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+            switch (position) {
+                case 0:
+                    FragmentSholat fragmentSholat = new FragmentSholat();
+                    return fragmentSholat;
+                case 1:
+                    FragmentMasjid fragmentMasjid = new FragmentMasjid();
+                    return fragmentMasjid;
+                case 2:
+                    FragmentAbout fragmentAbout = new FragmentAbout();
+                    return fragmentAbout;
+                default:
+                    FragmentSholat fragmentSholatDefault = new FragmentSholat();
+                    return fragmentSholatDefault;
+            }
         }
 
         @Override
         public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+            return this.numTab;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+            return tabLayout.getTabAt(position).getText();
         }
     }
 }
