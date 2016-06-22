@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -34,6 +36,12 @@
             android:label="Info"
             android:theme="@style/AppTheme">
         </activity>
+
+        <uses-library android:required="true" android:name="com.google.android.maps" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyB74ckZS-jg0lcmeEstR_r_fEzzW93cM_A"/>
+
     </application>
 
 </manifest>

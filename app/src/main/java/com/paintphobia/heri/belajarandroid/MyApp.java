@@ -1,6 +1,6 @@
 package com.paintphobia.heri.belajarandroid;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.paintphobia.heri.belajarandroid.dagger.components.BackEndComponent;
 import com.paintphobia.heri.belajarandroid.dagger.components.DaggerBackEndComponent;
@@ -13,7 +13,7 @@ import com.paintphobia.heri.belajarandroid.dagger.modules.ServiceModule;
 /**
  * Created by heri on 6/18/2016.
  */
-public class MyApp extends Application {
+public class MyApp extends MultiDexApplication {
 
     private ServiceComponent serviceComponent;
     private BackEndComponent backEndComponent;
