@@ -14,8 +14,11 @@ import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.paintphobia.heri.belajarandroid.R;
 import com.paintphobia.heri.belajarandroid.prayList.PrayListActivity;
 import com.paintphobia.heri.belajarandroid.prayList.PrayTimeAdapter;
@@ -46,6 +49,8 @@ public class FragmentSholat extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String image_url = "";
+
     private OnFragmentInteractionListener mListener;
 
     private ArrayList<PrayTimes> itemPrayData;
@@ -59,6 +64,9 @@ public class FragmentSholat extends Fragment {
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
+
+    @BindView(R.id.image_map)
+    ImageView image_map;
 
     public FragmentSholat() {
         // Required empty public constructor
@@ -172,6 +180,17 @@ public class FragmentSholat extends Fragment {
         if(requestCode == 1) {
             if(resultCode == Activity.RESULT_OK) {
                 itemPrayData = (ArrayList<PrayTimes>) data.getSerializableExtra("FETCH_RESULT");
+                image_url = data.getStringExtra("IMAGE_RESULT");
+
+                if(!image_url.equalsIgnoreCase("")) {
+                    Glide.with(this.getContext())
+                            .load(image_url)
+                            .placeholder(R.drawable.placeholder)
+                            .override(600,400)
+                            .fitCenter()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(image_map);
+                }
 
                 if(itemPrayData != null) {
                     adapter = new PrayTimeAdapter(itemPrayData);

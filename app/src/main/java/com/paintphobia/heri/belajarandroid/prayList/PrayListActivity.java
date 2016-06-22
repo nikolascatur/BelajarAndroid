@@ -76,6 +76,7 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
     private boolean isUseDaylight = false;
 
     private ArrayList<PrayTimes> itemPrayData;
+    private String image_url;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -214,8 +215,10 @@ public class PrayListActivity extends android.support.v7.app.AppCompatActivity
 
         Toast.makeText(PrayListActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
         itemPrayData = new ArrayList<>(prayTimesResponse.getItems());
+        image_url = prayTimesResponse.getMap_image();
         Intent intentSender = new Intent(PrayListActivity.this, MainMenuActivity.class);
         intentSender.putExtra("FETCH_RESULT", itemPrayData);
+        intentSender.putExtra("IMAGE_RESULT", image_url);
         setResult(Activity.RESULT_OK, intentSender);
 
         finish();
