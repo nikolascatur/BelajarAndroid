@@ -104,6 +104,7 @@ public class FragmentMasjid extends Fragment
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
+            progressDialog = new ProgressDialog(context);
             progressDialog.setMessage("FETCH MAP DATA");
             progressDialog.show();
         } else {
