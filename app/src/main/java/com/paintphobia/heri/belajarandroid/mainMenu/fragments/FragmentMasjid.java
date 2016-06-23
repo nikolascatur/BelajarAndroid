@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,9 @@ import com.paintphobia.heri.belajarandroid.R;
  */
 public class FragmentMasjid extends Fragment
         implements LocationListener, OnMapReadyCallback{
+
+    private final String TAG = FragmentMasjid.class.getSimpleName();
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -50,6 +54,7 @@ public class FragmentMasjid extends Fragment
 
     private SupportMapFragment supportMapFragment;
     private GoogleMap googleMap;
+    private Location currentLocation;
 
     private ProgressDialog progressDialog;
 
@@ -90,9 +95,17 @@ public class FragmentMasjid extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        progressDialog.setMessage("FETCH MAP DATA");
+        progressDialog.show();
+        View rootView = inflater.inflate(R.layout.fragment_fragment_masjid, container, false);
         supportMapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
+
+        if(supportMapFragment != null) {
+            supportMapFragment.getMapAsync(FragmentMasjid.this);
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_masjid, container, false);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -137,11 +150,11 @@ public class FragmentMasjid extends Fragment
     @Override
     public void onMapReady(GoogleMap googleMap) {
         loadMap(googleMap);
+        moveCameraOnLocation(currentLocation);
     }
 
     private void loadMap(GoogleMap map) {
-        progressDialog.setMessage("FETCH MAP DATA");
-        progressDialog.show();
+
         googleMap = map;
         googleMap.getUiSettings().setMyLocationButtonEnabled(true);
         googleMap.getUiSettings().setAllGesturesEnabled(true);
@@ -151,7 +164,6 @@ public class FragmentMasjid extends Fragment
         enableMyLocation();
 
         if(supportMapFragment != null) {
-            supportMapFragment.getMapAsync(FragmentMasjid.this);
 
             progressDialog.dismiss();
         }
@@ -165,23 +177,9 @@ public class FragmentMasjid extends Fragment
             LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();
             String provider = locationManager.getBestProvider(criteria, true);
-            Location location = locationManager.getLastKnownLocation(provider);
+            currentLocation = locationManager.getLastKnownLocation(provider);
 
-            if(location != null) {
-                LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
-                CameraPosition position = this.googleMap.getCameraPosition();
-
-                CameraPosition.Builder builder = new CameraPosition.Builder();
-                builder.zoom(16f).target(target);
-
-                this.googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(builder.build()));
-                this.googleMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude()))
-                        .title("You are here!")
-                        .snippet("Consider yourself located"));
-
-
-
-            }
+            moveCameraOnLocation(currentLocation);
 
         } else {
             ActivityCompat.requestPermissions(this.getActivity(),
@@ -210,6 +208,24 @@ public class FragmentMasjid extends Fragment
         }
     }
 
+    private void moveCameraOnLocation(Location location) {
+        if(location != null) {
+            LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
+            CameraPosition position = this.googleMap.getCameraPosition();
+
+            CameraPosition.Builder builder = new CameraPosition.Builder();
+            builder.zoom(16f).target(target);
+
+            this.googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(builder.build()));
+            this.googleMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude()))
+                    .title("You are here!")
+                    .snippet("Consider yourself located"));
+
+            Log.d(TAG, "move camera on loc");
+        } else {
+            Log.e(TAG, "loc null, try to move cam");
+        }
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
