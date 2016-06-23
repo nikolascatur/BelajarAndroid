@@ -1,5 +1,8 @@
 package com.paintphobia.heri.belajarandroid.prayList;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,7 @@ import butterknife.ButterKnife;
 public class PrayTimeAdapter extends RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>{
 
     private ArrayList<PrayTimes> item;
+    private Context context;
 
     public PrayTimeAdapter(ArrayList<PrayTimes> item) {
         this.item = item;
@@ -28,11 +32,15 @@ public class PrayTimeAdapter extends RecyclerView.Adapter<PrayTimeAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pray_list, parent, false);
+        context = parent.getContext();
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.cardView.bringToFront();
+        holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
+
         holder.textPrayDate.setText(item.get(position).getDate_for());
         holder.textFajr.setText(item.get(position).getFajr());
         holder.textShurooq.setText(item.get(position).getShurooq());
@@ -69,6 +77,9 @@ public class PrayTimeAdapter extends RecyclerView.Adapter<PrayTimeAdapter.ViewHo
 
         @BindView(R.id.text_isha)
         CustomTextView textIsha;
+
+        @BindView(R.id.cardView)
+        CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
